@@ -1,0 +1,54 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$python\
+$container
+$character"""
+
+palette = 'dracula'
+
+[palettes.dracula]
+black = '#21222C'
+blue = '#BD93F9'
+cyan = '#8BE9FD'
+green = '#50FA7B'
+purple = '#FF79C6'
+red = '#FF5555'
+white = '#F8F8F2'
+yellow = '#F1FA8C'
+brightBlack = '#6272A4'
+brightBlue = '#D6ACFF'
+brightCyan = '#A4FFFF'
+brightGreen = '#69FF94'
+brightPurple = '#FF92DF'
+brightRed = '#FF6E6E'
+brightWhite = '#FFFFFF'
+brightYellow = '#FFFFA5'
+
+[git_branch]
+style = "fg:green"
+format = '| [$symbol$branch(:$remote_branch)]($style) '
+
+[git_status]
+format ="([\\[$all_status$ahead_behind\\]]($style) )"
+untracked = ' [?$count](red)'
+
+[python]
+symbol = "\ue73c "
+style = "fg:purple"
+format = '| [${symbol}${pyenv_prefix}(${version}) (\($virtualenv\))]($style)'
+
+[directory]
+format = '[$path]($style) '
+truncate_to_repo = false
+truncation_length = 0
+
+[directory.substitutions]
+"~" = "C:/Users/Jaron"
+
+[character]
+success_symbol = "[\ue285](bold green)"
+error_symbol = "[\ue285](bold red)"
