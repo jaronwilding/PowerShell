@@ -4,7 +4,7 @@ Import-Module -Name PSReadLine
 
 $CurrentDirectory = Split-Path -Parent $Profile
 $AliasesPath = Join-Path $CurrentDirectory "aliases.ps1"
-$ThemePath = Join-Path $CurrentDirectory "theme.ps1"
+$ThemePath = Join-Path $CurrentDirectory "themes.ps1"
 
 # Settings
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
