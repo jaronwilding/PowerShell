@@ -27,6 +27,8 @@ foreach ($ConfigFile in $ConfigFiles) {
 
 # === Install \ Setup Blocks ===
 $InstallFiles = @(
+    # "$ProfileRoot\install\install.eza.ps1"
+    # "$ProfileRoot\install\install.ohmyposh.ps1",
     # "$ProfileRoot\install\install.uv.ps1"
 )
 
