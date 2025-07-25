@@ -29,19 +29,27 @@ switch ($Global:CurrentTheme) {
     # The enums need to be surrounded by parentheses to be evaluated correctly.
     ([Theme]::Starship) {
         $env:STARSHIP_CONFIG = Join-Path $ThemeDirectory "panda.starship.toml"
-        try {
-            Invoke-Expression (& starship init powershell)
-        } catch {
-            Write-Error "Failed to initialize Starship theme. Error: $_"
+        if (Get-Command "starship" -ErrorAction SilentlyContinue) {
+            try {
+                Invoke-Expression (& starship init powershell)
+            } catch {
+                Write-Warning "Failed to initialize Starship theme. Error: $_"
+            }
+        } else {
+            Write-Warning "Starship command not found. Please install Starship to use this theme."
         }
     }
 
     ([Theme]::OhMyPosh) {
         $ThemePath = Join-Path $ThemeDirectory "panda.omp.json"
-        try {
-            oh-my-posh --init --shell pwsh --config $ThemePath | Invoke-Expression
-        } catch {
-            Write-Error "Failed to initalize Oh My Posh theme: $_"
+        if (Get-Command "oh-my-posh" -ErrorAction SilentlyContinue) {
+            try {
+                oh-my-posh --init --shell pwsh --config $ThemePath | Invoke-Expression
+            } catch {
+                Write-Warning "Failed to initalize Oh My Posh theme: $_"
+            }
+        } else {
+            Write-Warning "Oh My Posh command not found. Please install Oh My Posh to use this theme."
         }
     }
 
