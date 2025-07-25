@@ -40,7 +40,8 @@ foreach ($InstallFile in $InstallFiles) {
 
 # === Completion Setup ===
 $CompletionFiles = @(
-    "$ProfileRoot\completion\rez.ps1"
+    "$ProfileRoot\completion\_rez.ps1",
+    "$ProfileRoot\completion\_eza.ps1"
 )
 foreach ($CompletionFile in $CompletionFiles) {
     if (Test-Path $CompletionFile) {
