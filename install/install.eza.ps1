@@ -10,14 +10,18 @@ function Install-Eza {
     Install-Eza
     #>
 
-    $winget_path = Resolve-Path -Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe\winget.exe" -ErrorAction SilentlyContinue
-
-    if ($winget_path) {
-        # Found a match, use it
-        $winget_path = $winget_path.Path
-    } else {
-        # Fallback to default
+    try {
+        Get-Command "winget.exe" -ErrorAction Stop | Out-Null
         $winget_path = "winget.exe"
+    } catch {
+        # Fallback: try resolving from WindowsApps
+        $resolved_path = Resolve-Path -Path "C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_*_x64__8wekyb3d8bbwe\winget.exe" -ErrorAction SilentlyContinue
+        if ($resolved_path) {
+            $winget_path = $resolved_path.Path
+        } else {
+            Write-Error "winget.exe not found in PATH or WindowsApps fallback. Cannot continue."
+            return $false
+        }
     }
 
     $app_name = "eza-community.eza"
