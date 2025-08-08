@@ -10,7 +10,8 @@ enum Theme {
 # === Config ===
 $defaultTheme = [Theme]::OhMyPosh
 $Global:CurrentTheme = $defaultTheme
-$ThemeDirectory = Join-Path (Split-Path -Parent $Profile) "themes"
+# $ThemeDirectory = Join-Path (Split-Path -Parent $Profile) "themes"
+$ThemeDirectory = Join-Path $env:FormationEffectsModule "themes"
 
 if ($env:TerminalTheme) {
     try {
